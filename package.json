@@ -10,7 +10,16 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.5.0",
-    "pigpio": "^0.6.1",
-    "rpio": "^0.9.17"
+    "debug": "^3.0.1",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-lodash-fp": "^2.1.3"
+  },
+  "optionalDependencies": {
+    "pigpio": "^0.6.1"
   }
 }

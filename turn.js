@@ -2,8 +2,8 @@
 
 const { Gpio } = require('pigpio')
 
-const lMotor = new Gpio(18, {mode: Gpio.OUTPUT})
-const rMotor = new Gpio(17, {mode: Gpio.OUTPUT})
+const lMotor = new Gpio(18, { mode: Gpio.OUTPUT })
+const rMotor = new Gpio(17, { mode: Gpio.OUTPUT })
 
 let dutyCycle = 245;
 
@@ -15,9 +15,9 @@ process.on('SIGINT', () => {
   setTimeout(process.exit, 1000)
 })
 
-setInterval(function () {
+setInterval(() => {
   lMotor.pwmWrite(dutyCycle);
- 
+
   dutyCycle += 1;
   if (dutyCycle > 255) {
     dutyCycle = 245;
@@ -25,7 +25,7 @@ setInterval(function () {
 }, 20);
 
 let go = true
-setInterval(function() {
+setInterval(() => {
   go = !go
   rMotor.pwmWrite(go ? 255 : 0)
 }, 100)
