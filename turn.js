@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
 const Robot = require('./lib/Robot')
+const ProcessHolder = require('./lib/helpers/ProcessHolder')
 
+new ProcessHolder().hold()
 const robot = new Robot()
-const interval = setInterval(robot.right, 100)
+robot.right()
 
 process.on('SIGINT', () => {
-  clearInterval(interval)
   robot.stop()
+  process.exit(0)
 })

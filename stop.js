@@ -1,11 +1,6 @@
 #!/usr/bin/env node
 
-const { Gpio } = require('pigpio')
+const Robot = require('./lib/Robot')
 
-const lMotor = new Gpio(17, {mode: Gpio.OUTPUT})
-const rMotor = new Gpio(18, {mode: Gpio.OUTPUT})
-
-setInterval(() => {
-  lMotor.pwmWrite(5)
-  rMotor.pwmWrite(5)
-}, 20)
+const robot = new Robot()
+robot.stop()
