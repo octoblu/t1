@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
 require('readline').emitKeypressEvents(process.stdin)
-const XboxController = require('./lib/XboxController')
+const Controller = require('./lib/Controller')
 const Robot = require('./lib/Robot')
 
 class Command {
   constructor() {
     process.stdin.setRawMode(true)
+    this.controller = new Controller()
     this.robot = new Robot()
-    this.xboxController = new XboxController()
   }
 
   run() {
@@ -23,13 +23,15 @@ class Command {
       if (name === 'escape') this.exit()
     })
 
-    this.xboxController.on('leftStick', ({ x, y }) => {
-      this.robot.move({ turn: x, forward: y })
+    this.controller.connect((error) => {
+      if (error) throw error
+      console.log('Connected to controller')
     })
+    this.controller.on('move', ({ turn, forward }) => this.robot.move({ turn, forward }))
   }
 
   exit() {
-    console.log('exiting')
+    console.log('exiting') // eslint-disable-line no-console
     this.robot.stop()
     process.exit(0)
   }
