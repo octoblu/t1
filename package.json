@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sqrtofsaturn/xbox-controller-node": "^1.6.0",
     "async": "^2.5.0",
     "debug": "^3.0.1",
     "keypress": "^0.2.1",
