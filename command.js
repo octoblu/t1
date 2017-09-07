@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
+
 require('readline').emitKeypressEvents(process.stdin)
 const Controller = require('./lib/Controller')
 const Robot = require('./lib/Robot')
@@ -24,10 +26,10 @@ class Command {
     })
 
     this.controller.connect((error) => {
-      if (error) throw error
+      if (error) return console.error(`Error connecting to controller: ${error.message}`)
       console.log('Connected to controller')
     })
-    this.controller.on('move', ({ turn, forward }) => this.robot.move({ turn, forward }))
+    this.controller.on('move', ({ left, right }) => this.robot.move({ left, right }))
   }
 
   exit() {
