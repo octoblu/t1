@@ -10,7 +10,8 @@ class Command {
   }
 
   run() {
-    console.log('press "escape" to quit')
+    console.log('press "escape" to quit') // eslint-disable-line no-console
+
     process.stdin.on('keypress', (ignored, { name }) => {
       if (name === 'up') this.robot.forward()
       if (name === 'left') this.robot.left()
